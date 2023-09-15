@@ -1,0 +1,64 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+}
+.outer-box {
+  background-color: #fff;
+  width: 500px;
+  height: 110px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 7px 15px;
+}
+
+/* Style for the inner container */
+.inner-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style for the buttons */
+.buttons {
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Style for individual buttons */
+.buttons button {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* Style for the "Delete" button */
+.buttons button:last-child {
+  background-color: rgb(198, 41, 41);
+  color: #fff;
+}
+
+/* Remove background color for "Cancel" text */
+.buttons button:first-child {
+  background-color: transparent; /* Set the background color to transparent */
+  color: #000; /* Set the text color */
+}
+.x {
+  background-color: transparent; /* Set background color to transparent */
+  border: none; /* Remove the border */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  cursor: pointer; /* Add cursor pointer for interaction */
+  font-size: inherit; /* Inherit font size */
+  color: inherit; /* Inherit text color */
+}

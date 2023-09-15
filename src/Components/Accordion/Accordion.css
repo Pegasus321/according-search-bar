@@ -1,33 +1,35 @@
 .accordion {
-  max-width: 400px;
-  border: solid;
+  max-width: 420px;
+  border: 2px solid #ccc;
   border-radius: 20px;
   padding: 10px;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out; /* Add a smooth transition */
   max-height: 0;
 }
-/* .onOpen {
-  display: flex;
-  flex-direction: column;
-} */
+
 .collapsed {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
+
 .img-name {
   display: flex;
+  align-items: center;
   gap: 3rem;
 }
 .dob-gender {
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .description {
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .open {
@@ -36,16 +38,92 @@
 .closed {
   max-height: 50px; /* Keep the closed state */
 }
+
+/* Styles for circular images */
 .content {
   overflow: hidden;
 }
+
+/* Styles for circular images */
 .circular-image {
   border-radius: 50%;
   width: 50px;
   height: 50px;
 }
+
+/* Styles for the edit and save buttons section */
 .edit-save {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+}
+
+/* Styles for labels */
+.forlabel {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Styles for disabled input elements */
+.disabled-input {
+  border: 1px solid transparent;
+  background-color: transparent;
+  font-weight: normal;
+  color: inherit;
+  height: 30px;
+  width: 100px;
+}
+.endabled-input {
+  border: 1px solid #ccc;
+  background-color: #fff; /* Example background color */
+  font-weight: normal; /* Set the font weight to normal */
+  color: #333; /* Example text color */
+  cursor: text; /* Set cursor to text when enabled */
+  border-radius: 10px;
+  height: 30px;
+  width: 100px;
+}
+.flexing-down {
+  display: flex;
+  flex-direction: column;
+}
+.disabled-textarea {
+  min-height: 100px;
+  min-width: 400px;
+  max-width: 400px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  resize: none;
+  font-weight: normal;
+  color: inherit;
+  border-radius: 20px;
+  padding: 7px;
+}
+.enabled-textarea {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  min-height: 100px;
+  min-width: 400px;
+  max-width: 400px;
+  resize: none;
+  border-radius: 20px;
+  padding: 7px;
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+label {
+  margin-bottom: 5px;
+}
+.disabled-gender-dropdown {
+  border: 1px solid transparent;
+  background-color: transparent;
+  font-weight: normal;
+  color: inherit;
+  appearance: none;
+  border-radius: 10px;
+  height: 30px;
+  width: 110px;
 }
