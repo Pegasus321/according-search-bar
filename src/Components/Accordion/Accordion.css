@@ -1,7 +1,10 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
 .accordion {
   max-width: 420px;
   border: 2px solid #ccc;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out; /* Add a smooth transition */
@@ -18,7 +21,7 @@
 .img-name {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1.5rem;
 }
 .dob-gender {
   padding-top: 20px;
@@ -29,7 +32,7 @@
 }
 .description {
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .open {
@@ -66,14 +69,18 @@
 
 /* Styles for disabled input elements */
 .disabled-input {
+  padding-left: 5px;
   border: 1px solid transparent;
   background-color: transparent;
   font-weight: normal;
   color: inherit;
   height: 30px;
   width: 100px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .endabled-input {
+  padding-left: 5px;
   border: 1px solid #ccc;
   background-color: #fff; /* Example background color */
   font-weight: normal; /* Set the font weight to normal */
@@ -82,6 +89,8 @@
   border-radius: 10px;
   height: 30px;
   width: 100px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .flexing-down {
   display: flex;
@@ -98,6 +107,7 @@
   color: inherit;
   border-radius: 20px;
   padding: 7px;
+  font-family: "Roboto", sans-serif;
 }
 .enabled-textarea {
   border: 1px solid #ccc;
@@ -108,6 +118,7 @@
   resize: none;
   border-radius: 20px;
   padding: 7px;
+  font-family: "Roboto", sans-serif;
 }
 button {
   background-color: transparent;
@@ -115,15 +126,32 @@ button {
   cursor: pointer;
 }
 label {
-  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 200;
+  color: gray;
+  padding-left: 8px;
 }
 .disabled-gender-dropdown {
   border: 1px solid transparent;
   background-color: transparent;
   font-weight: normal;
-  color: inherit;
   appearance: none;
   border-radius: 10px;
   height: 30px;
-  width: 110px;
+  width: 100px;
+  padding-left: 9px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.icon {
+  width: 20px;
+}
+.capsName {
+  font-size: 15px;
+  font-weight: bold;
+}
+.selectStyle {
+  height: 33px;
+  width: 108px;
+  color: black;
 }

@@ -6,6 +6,8 @@ export default function Accordion({ user, onDelete }) {
   const [isOpen, setIsOpen] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
+  const [originalUserData, setOriginalUserData] = useState([]);
+
   //delete component
   const [showDelete, setShowDelete] = useState(false);
 
@@ -28,7 +30,7 @@ export default function Accordion({ user, onDelete }) {
 
       const userData = Array.isArray(storedUserData)
         ? storedUserData
-        : [storedUserData];
+        : storedUserData;
 
       if (userData.length > 0) {
         const existingUserData = userData.find((data) => {
@@ -36,6 +38,7 @@ export default function Accordion({ user, onDelete }) {
             return data.id === user.id;
           }
         });
+
         if (existingUserData) {
           setEditedData(existingUserData);
         }
@@ -78,6 +81,7 @@ export default function Accordion({ user, onDelete }) {
       ? storedUserData
       : [storedUserData];
     console.log(userData);
+    setOriginalUserData(userData);
     const existingUserDataIndex = userData.findIndex((data) => {
       if (data) {
         return data.id === user.id;
@@ -99,6 +103,15 @@ export default function Accordion({ user, onDelete }) {
 
   // handle cancel change
   const handleCancelChange = () => {
+    const removeNull = originalUserData.filter((item) => item !== null);
+    // console.log(removeNull);
+    const userObjectToSet = removeNull.filter((item) => item.id == user.id);
+    // console.log(userObjectToSet);
+    if (userObjectToSet) {
+      setEditedData(userObjectToSet);
+    } else {
+      setEditedData(user);
+    }
     toggleEditable();
   };
 
@@ -114,11 +127,6 @@ export default function Accordion({ user, onDelete }) {
     setShowDelete(false);
 
     onDelete(user.id);
-    // const newDeletedUserIds = [...deletedUserIds, user.id];
-    // setDeletedUserIds(newDeletedUserIds);
-    // console.log(deletedUserIds);
-
-    // localStorage.setItem("deletedUserIds", JSON.stringify(newDeletedUserIds));
   };
 
   // handleAgeChange
@@ -144,7 +152,9 @@ export default function Accordion({ user, onDelete }) {
               className="circular-image"
             />
             <input
-              className={`${disabled ? "disabled-input" : "endabled-input"}`}
+              className={`capsName ${
+                disabled ? "disabled-input" : "endabled-input"
+              }`}
               type="text"
               name="Name"
               value={editedData.fullName}
@@ -173,21 +183,18 @@ export default function Accordion({ user, onDelete }) {
               <label htmlFor="" className="label">
                 Gender
               </label>
-              {/* <input
-                className={`${disabled ? "disabled-input" : "endabled-input"}`}
-                type="text"
-                value={user.gender}
-                disabled={disabled}
-              /> */}
+
               <select
-                className={`${
+                className={`selectStyle ${
                   disabled ? "disabled-gender-dropdown" : "endabled-input"
                 }`}
                 value={editedData.gender}
                 disabled={disabled}
                 onChange={handleGenderChange}
               >
-                <option value="male">Male</option>
+                <option style={{ color: "black" }} value="male">
+                  Male
+                </option>
                 <option value="female">Female</option>
                 <option value="transgender">Transgender</option>
                 <option value="rather not say">Rather not say"</option>
@@ -212,27 +219,31 @@ export default function Accordion({ user, onDelete }) {
             <label htmlFor="" className="label">
               Description
             </label>
-            <textarea
-              className={`${
-                disabled ? "disabled-textarea" : "enabled-textarea"
-              }`}
-              type="textarea"
-              name="description"
-              value={editedData.description}
-              disabled={disabled}
-              onChange={handleDescriptionChange}
-            />
+            <div>
+              <textarea
+                className={`${
+                  disabled ? "disabled-textarea" : "enabled-textarea"
+                }`}
+                type="textarea"
+                name="description"
+                value={editedData.description}
+                disabled={disabled}
+                onChange={handleDescriptionChange}
+              />
+            </div>
           </div>
           <div className="edit-save">
             <button>
               {disabled ? (
                 <img
+                  className="icon"
                   src="/delete1.png"
                   onClick={handleDeleteChange}
                   alt="delete"
                 />
               ) : (
                 <img
+                  className="icon"
                   src="/cross.png"
                   onClick={handleCancelChange}
                   alt="cancel"
@@ -241,9 +252,10 @@ export default function Accordion({ user, onDelete }) {
             </button>
             <button onClick={toggleEditable}>
               {disabled ? (
-                <img src="/pencil.png" alt="edit" />
+                <img className="icon" src="/pencil.png" alt="edit" />
               ) : (
                 <img
+                  className="icon"
                   src="/check-mark.png"
                   onClick={handleSaveChange}
                   alt="save"

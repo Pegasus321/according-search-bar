@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [deletedUserIds, setDeletedUserIds] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [newDataAfterFilter, setNewDataAfterFilter] = useState([]);
 
   useEffect(() => {
     const storedDeletedUserIds = JSON.parse(
@@ -24,20 +25,24 @@ function App() {
     setDeletedUserIds(newDeletedUserIds);
     localStorage.setItem("deletedUserIds", JSON.stringify(newDeletedUserIds));
   };
+  const mergedNameData = data.map((item) => {
+    return { ...item, fullName: item.first + " " + item.last };
+  });
 
-  // const activeUsers =
-  //   deletedUserIds.length > 0
-  //     ? data.filter((item) => !deletedUserIds.includes(item.id))
-  //     : data;
-
-  const activeUsers = [...data, ...userData].filter(
+  const mergedData = mergedNameData.map((item) => {
+    const userDataItem = userData.find((user) => user.id === item.id);
+    return userDataItem ? { ...item, ...userDataItem } : item;
+  });
+  const activeUsers = mergedData.filter(
     (item) => !deletedUserIds.includes(item.id)
   );
-
+  const filteredData = (newdata) => {
+    setNewDataAfterFilter(newdata);
+  };
   return (
     <div className="App">
-      <Search data={data} />
-      {activeUsers.map((item) => (
+      <Search data={activeUsers} filteredData={filteredData} />
+      {newDataAfterFilter.map((item) => (
         <Accordion key={item.id} user={item} onDelete={handleUserDelete} />
       ))}
     </div>
