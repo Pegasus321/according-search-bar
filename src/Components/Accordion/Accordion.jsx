@@ -6,8 +6,6 @@ export default function Accordion({ user, onDelete }) {
   const [isOpen, setIsOpen] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
-  const [originalUserData, setOriginalUserData] = useState([]);
-
   //delete component
   const [showDelete, setShowDelete] = useState(false);
 
@@ -16,6 +14,15 @@ export default function Accordion({ user, onDelete }) {
     const today = new Date();
     return today.getFullYear() - dob.getFullYear();
   };
+
+  const [originalUserData, setOriginalUserData] = useState([
+    {
+      ...user,
+      fullName: user.first + " " + user.last,
+      age: CalulateAge(user.dob),
+    },
+  ]);
+
   // Data
   const [editedData, setEditedData] = useState({
     ...user,
@@ -80,8 +87,9 @@ export default function Accordion({ user, onDelete }) {
     const userData = Array.isArray(storedUserData)
       ? storedUserData
       : [storedUserData];
-    console.log(userData);
+
     setOriginalUserData(userData);
+    console.log(userData);
     const existingUserDataIndex = userData.findIndex((data) => {
       if (data) {
         return data.id === user.id;
@@ -100,15 +108,16 @@ export default function Accordion({ user, onDelete }) {
   const handleDeleteChange = () => {
     setShowDelete(true);
   };
-
+  // console.log(originalUserData);
   // handle cancel change
   const handleCancelChange = () => {
     const removeNull = originalUserData.filter((item) => item !== null);
+    console.log(removeNull);
     // console.log(removeNull);
     const userObjectToSet = removeNull.filter((item) => item.id == user.id);
-    // console.log(userObjectToSet);
+
     if (userObjectToSet) {
-      setEditedData(userObjectToSet);
+      setEditedData(userObjectToSet[0]);
     } else {
       setEditedData(user);
     }
